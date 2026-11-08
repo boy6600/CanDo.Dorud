@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>موسسه زبان CanDo | آموزش حرفه‌ای انگلیسی در دورود</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0f172a;
+  --primary-light: #1e293b;
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --accent-glow: rgba(245,158,11,0.3);
+  --blue: #0ea5e9;
+  --blue-glow: rgba(14,165,233,0.3);
+  --purple: #8b5cf6;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --surface: rgba(30,41,59,0.6);
+  --surface-solid: #1e293b;
+  --border: rgba(148,163,184,0.1);
+  --success: #10b981;
+  --radius: 24px;
+  --radius-sm: 16px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Vazirmatn", Tahoma, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  color: var(--text);
+  line-height: 1.9;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Animated background particles */
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float 20s infinite ease-in-out;
+}
+
+.particle:nth-child(1) { width: 300px; height: 300px; background: var(--accent); top: 10%; right: -5%; animation-delay: 0s; filter: blur(60px); }
+.particle:nth-child(2) { width: 200px; height: 200px; background: var(--blue); top: 40%; left: -3%; animation-delay: -5s; filter: blur(50px); }
+.particle:nth-child(3) { width: 250px; height: 250px; background: var(--purple); bottom: 10%; right: 20%; animation-delay: -10s; filter: blur(55px); }
+.particle:nth-child(4) { width: 150px; height: 150px; background: var(--accent); top: 70%; left: 10%; animation-delay: -15s; filter: blur(40px); }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+/* Loading screen */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--primary);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+
+.loader.hidden { opacity: 0; visibility: hidden; }
+
+.loader-logo {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loader-bar {
+  width: 200px;
+  height: 4px;
+  background: var(--surface-solid);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader-bar::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  animation: loadBar 1.5s ease forwards;
+}
+
+@keyframes loadBar {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  transition: all 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(15,23,42,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 2rem;
+}
+
+.nav-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-icon {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.4rem;
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.logo-text {
+  background: linear-gradient(135deg, var(--text), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  transition: width 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-links a:hover::after {
+  width: 60%;
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  color: var(--primary) !important;
+  font-weight: 800 !important;
+  padding: 0.6rem 1.4rem !important;
+  border-radius: 12px !important;
+}
+
+.nav-cta::after { display: none !important; }
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 7rem 2rem 4rem;
+  z-index: 1;
+}
+
+.hero-inner {
+  max-width: 1300px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--accent-light);
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.hero-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  line-height: 2;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-glow {
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  color: var(--primary);
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.btn-glow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px var(--accent-glow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: rgba(245,158,11,0.1);
+}
+
+/* Hero visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 450px;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.classroom-preview {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(14,165,233,0.1));
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.classroom-preview .icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.classroom-preview h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.classroom-preview p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.floating-card {
+  position: absolute;
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.floating-card:nth-child(2) { top: 10%; left: -10%; animation-delay: 0s; }
+.floating-card:nth-child(3) { bottom: 20%; right: -5%; animation-delay: -2s; }
+.floating-card:nth-child(4) { bottom: 5%; left: 0; animation-delay: -4s; }
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.floating-card .emoji { font-size: 1.5rem; }
+
+/* Stats bar */
+.stats-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 2rem;
+  margin-top: -3rem;
+}
+
+.stats-bar {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-item p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+/* Sections general */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
+.section-label {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.section-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+/* Courses */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.course-card {
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.course-card:hover::before {
+  transform: scaleX(1);
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(245,158,11,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.course-num {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(245,158,11,0.08);
+  line-height: 1;
+}
+
+.course-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(14,165,233,0.2));
+  border: 1px solid var(--border);
+}
+
+.course-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+}
+
+.course-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+
+.course-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.course-tag {
+  background: rgba(245,158,11,0.1);
+  color: var(--accent-light);
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid rgba(245,158,11,0.2);
+}
+
+/* Gallery / Environment */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  transition: all 0.4s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.gallery-item.large {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.gallery-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(14,165,233,0.15));
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.gallery-content .emoji {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+
+.gallery-item.large .emoji { font-size: 5rem; }
+
+.gallery-content h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+
+.gallery-content p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Exercises */
+.exercise-card {
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.exercise-card:hover {
+  border-color: rgba(245,158,11,0.2);
+}
+
+.ex-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.ex-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.exercise-card h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.exercise-card > p {
+  margin-bottom: 1.2rem;
+  color: var(--text);
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.quiz-btn {
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  background: rgba(15,23,42,0.5);
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: right;
+  transition: all 0.3s;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.quiz-btn:hover {
+  border-color: var(--accent);
+  background: rgba(245,158,11,0.1);
+  transform: translateX(-4px);
+}
+
+.quiz-btn.correct {
+  border-color: var(--success);
+  background: rgba(16,185,129,0.1);
+  color: var(--success);
+}
+
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.testi-card {
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: relative;
+  transition: all 0.4s;
+}
+
+.testi-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139,92,246,0.3);
+}
+
+.testi-quote {
+  font-size: 3.5rem;
+  color: var(--accent);
+  opacity: 0.2;
+  line-height: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-family: Georgia, serif;
+}
+
+.testi-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testi-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.testi-info strong {
+  display: block;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.testi-info span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Features */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  transition: height 0.4s;
+  opacity: 0.3;
+}
+
+.feature-card:hover::after {
+  height: 4px;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(245,158,11,0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(14,165,233,0.15));
+  border: 1px solid var(--border);
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+}
+
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+
+/* Pricing */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.pricing-card {
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s;
+  position: relative;
+}
+
+.pricing-card.popular {
+  border-color: var(--accent);
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px var(--accent-glow);
+}
+
+.pricing-card.popular::before {
+  content: 'پرفروش';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.3rem 1.5rem;
+  border-radius: 0 0 12px 12px;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+}
+
+.pricing-card.popular:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+.pricing-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-card .desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.3rem;
+}
+
+.price span {
+  font-size: 1rem;
+  color: var(--text-muted);
+  -webkit-text-fill-color: var(--text-muted);
+}
+
+.pricing-features {
+  list-style: none;
+  text-align: right;
+  margin: 1.5rem 0;
+}
+
+.pricing-features li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pricing-features li::before {
+  content: '✓';
+  color: var(--success);
+  font-weight: 800;
+}
+
+/* Contact */
+.contact-section {
+  background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(14,165,233,0.1));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-info h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+}
+
+.contact-info > p {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  background: rgba(15,23,42,0.4);
+  padding: 1.2rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.contact-row:hover {
+  border-color: rgba(245,158,11,0.3);
+  transform: translateX(-5px);
+}
+
+.contact-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.contact-text strong {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-text span,
+.contact-text a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Contact form */
+.contact-form {
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: rgba(15,23,42,0.5);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* FAQ */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--surface);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.faq-item:hover {
+  border-color: rgba(245,158,11,0.2);
+}
+
+.faq-question {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.faq-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(245,158,11,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.faq-answer {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.faq-item.active .faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  max-height: 300px;
+}
+
+/* Footer */
+footer {
+  background: rgba(15,23,42,0.8);
+  border-top: 1px solid var(--border);
+  padding: 4rem 2rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand .logo {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  color: var(--text);
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 0.7rem;
+}
+
+.footer-col a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Scroll animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  border: none;
+  border-radius: 50%;
+  color: var(--primary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s;
+  z-index: 999;
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+  .hero-desc { margin: 0 auto 2rem; }
+  .hero-buttons { justify-content: center; }
+  .hero-visual { order: -1; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item.large { grid-column: span 1; grid-row: span 1; }
+  .pricing-card.popular { transform: scale(1); }
+  .pricing-card.popular:hover { transform: translateY(-8px); }
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: block; }
+}
+
+@media (max-width: 600px) {
+  .stats-bar { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  section { padding: 4rem 1.5rem; }
+  .contact-section { padding: 2.5rem 1.5rem; }
+  .hero { padding: 6rem 1.5rem 3rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Print */
+@media print {
+  .bg-animation, .loader, .back-to-top, nav { display: none; }
+  body { background: white; color: black; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="loader-logo">CanDo</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Background Animation -->
+<div class="bg-animation">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">C</div>
+      <span class="logo-text">CanDo</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">صفحه اصلی</a></li>
+      <li><a href="#courses">دوره‌ها</a></li>
+      <li><a href="#gallery">فضای آموزشی</a></li>
+      <li><a href="#exercises">تمرین‌ها</a></li>
+      <li><a href="#pricing">قیمت‌ها</a></li>
+      <li><a href="#faq">سوالات</a></li>
+      <li><a href="#contact" class="nav-cta">ثبت‌نام رایگان</a></li>
+    </ul>
+    <button class="mobile-menu-btn">☰</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span></span>
+        موسسه زبان انگلیسی در دورود
+      </div>
+      <h1>
+        یادگیری زبان انگلیسی با
+        <span class="gradient-text">CanDo</span>
+        شروع کنید
+      </h1>
+      <p class="hero-desc">
+        از مبتدی تا پیشرفته، با اساتید مجرب و روش‌های نوین آموزشی، مسیر موفقیت در زبان انگلیسی را طی کنید. کلاس‌های حضوری و آنلاین با بهترین کیفیت.
+      </p>
+      <div class="hero-buttons">
+        <a href="#courses" class="btn btn-glow">مشاهده دوره‌ها</a>
+        <a href="#contact" class="btn btn-outline">مشاوره رایگان</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="glass-card">
+        <div class="classroom-preview">
+          <div class="icon">🏫</div>
+          <h3>کلاس‌های درس CanDo</h3>
+          <p>محیطی دوستانه و حرفه‌ای برای یادگیری زبان انگلیسی</p>
+        </div>
+      </div>
+      <div class="floating-card">
+        <span class="emoji">⭐</span>
+        <span>۹۸٪ رضایت</span>
+      </div>
+      <div class="floating-card">
+        <span class="emoji">👨‍🏫</span>
+        <span>+۱۵ استاد مجرب</span>
+      </div>
+      <div class="floating-card">
+        <span class="emoji">🎓</span>
+        <span>+۱۲۰۰ فارغ‌التحصیل</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Stats -->
+<div class="stats-section">
+  <div class="stats-bar reveal">
+    <div class="stat-item">
+      <h3 data-count="1200">+۱۲۰۰</h3>
+      <p>زبان‌آموز موفق</p>
+    </div>
+    <div class="stat-item">
+      <h3 data-count="8">+۸</h3>
+      <p>سال تجربه</p>
+    </div>
+    <div class="stat-item">
+      <h3 data-count="15">+۱۵</h3>
+      <p>استاد مجرب</p>
+    </div>
+    <div class="stat-item">
+      <h3 data-count="98">۹۸٪</h3>
+      <p>رضایت زبان‌آموزان</p>
+    </div>
+  </div>
+</div>
+
+<!-- Courses -->
+<section id="courses">
+  <div class="section-header reveal">
+    <div class="section-label">دوره‌های آموزشی</div>
+    <h2 class="section-title">مسیر یادگیری خود را انتخاب کنید</h2>
+    <p class="section-sub">سطوح مختلف آموزش زبان انگلیسی متناسب با نیاز و هدف شما</p>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card reveal">
+      <div class="course-num">01</div>
+      <div class="course-icon">📘</div>
+      <h3>مبتدی (Elementary)</h3>
+      <p>آموزش گرامر پایه، لغات روزمره، مکالمه‌های ساده و تلفظ صحیح. مناسب افراد بدون پیش‌زمینه.</p>
+      <div class="course-tags"><span class="course-tag">مکالمه</span><span class="course-tag">گرامر پایه</span></div>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-num">02</div>
+      <div class="course-icon">📗</div>
+      <h3>پیش‌متوسطه (Pre-Intermediate)</h3>
+      <p>گسترش دایره لغات، زمان‌های گذشته، مکالمه در موقعیت‌های آشنا، درک مطلب متون ساده.</p>
+      <div class="course-tags"><span class="course-tag">لغات</span><span class="course-tag">مکالمه</span></div>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-num">03</div>
+      <div class="course-icon">📙</div>
+      <h3>متوسطه (Intermediate)</h3>
+      <p>گرامر پیچیده‌تر، صحبت کردن در موضوعات مختلف، نگارش متون کوتاه، آمادگی اولیه آیلتس.</p>
+      <div class="course-tags"><span class="course-tag">آیلتس</span><span class="course-tag">نگارش</span></div>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-num">04</div>
+      <div class="course-icon">📕</div>
+      <h3>پیشرفته (Advanced)</h3>
+      <p>مکالمه روان و آکادمیک، لغات تخصصی، آمادگی کامل آزمون آیلتس و تافل، نگارش آکادمیک.</p>
+      <div class="course-tags"><span class="course-tag">آیلتس</span><span class="course-tag">تافل</span></div>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-num">05</div>
+      <div class="course-icon">🎯</div>
+      <h3>آمادگی آزمون آیلتس (IELTS)</h3>
+      <p>تمرین تخصصی مهارت‌های Listening، Reading، Writing و Speaking با رویکرد نمره هدف ۶ تا ۸.</p>
+      <div class="course-tags"><span class="course-tag">آزمون‌محور</span><span class="course-tag">فشرده</span></div>
+    </div>
+    <div class="course-card reveal">
+      <div class="course-num">06</div>
+      <div class="course-icon">💬</div>
+      <h3>مکالمه محور (Conversation)</h3>
+      <p>کلاس‌های فشرده مکالمه برای مسافرت، تجارت، مصاحبه شغلی بدون نیاز به کتاب سنگین.</p>
+      <div class="course-tags"><span class="course-tag">کاربردی</span><span class="course-tag">سریع</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <div class="section-header reveal">
+    <div class="section-label">فضای آموزشی</div>
+    <h2 class="section-title">محیطی حرفه‌ای برای یادگیری</h2>
+    <p class="section-sub">کلاس‌های درس CanDo، فضایی دوستانه و مجهز برای پیشرفت شما</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item large">
+      <div class="gallery-content">
+        <div class="emoji">🏫</div>
+        <h4>کلاس‌های درس مدرن</h4>
+        <p>کلاس‌های تمیز و روشن با صندلی‌های راحت و تخته هوشمند</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-content">
+        <div class="emoji">📚</div>
+        <h4>کتابخانه تخصصی</h4>
+        <p>American English File و Cambridge IELTS</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-content">
+        <div class="emoji"></div>
+        <h4>کلاس مکالمه</h4>
+        <p>بحث و گفتگو به انگلیسی</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-content">
+        <div class="emoji">💻</div>
+        <h4>آموزش آنلاین</h4>
+        <p>کلاس با کیفیت بالا</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-content">
+        <div class="emoji">🏆</div>
+        <h4>مسابقات ماهانه</h4>
+        <p>با جوایز تشویقی</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Exercises -->
+<section id="exercises">
+  <div class="section-header reveal">
+    <div class="section-label">تمرین‌های آنلاین</div>
+    <h2 class="section-title">مهارت خود را محک بزنید</h2>
+    <p class="section-sub">نمونه تمرین‌های تعاملی برای تقویت مهارت‌های زبان انگلیسی</p>
+  </div>
+
+  <div class="exercise-card reveal">
+    <div class="ex-header">
+      <div class="ex-icon">📖</div>
+      <h4>تمرین لغات (Vocabulary) — سطح مبتدی</h4>
+    </div>
+    <p>معنی کلمه <strong style="color:var(--accent-light)">"Apple"</strong> چیست؟</p>
+    <div class="quiz-options">
+      <button class="quiz-btn" onclick="selectAnswer(this)">A) سیب</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">B) پرتقال</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">C) موز</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">D) انگور</button>
+    </div>
+  </div>
+
+  <div class="exercise-card reveal">
+    <div class="ex-header">
+      <div class="ex-icon">✍️</div>
+      <h4>تمرین گرامر (Grammar) — سطح پیش‌متوسطه</h4>
+    </div>
+    <p>جای خالی را پر کنید: <strong style="color:var(--accent-light)">She ______ to school every day.</strong></p>
+    <div class="quiz-options">
+      <button class="quiz-btn" onclick="selectAnswer(this)">A) go</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">B) goes</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">C) going</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">D) gone</button>
+    </div>
+  </div>
+
+  <div class="exercise-card reveal">
+    <div class="ex-header">
+      <div class="ex-icon">📰</div>
+      <h4>تمرین درک مطلب (Reading) — سطح متوسطه</h4>
+    </div>
+    <p style="background:rgba(14,165,233,0.1);padding:1rem;border-radius:14px;border:1px solid var(--border);margin-bottom:1rem;color:var(--text-muted);">
+      "The Internet has changed the way people communicate. It allows us to share information instantly across the world."
+    </p>
+    <p>طبق متن، اینترنت چه کاری را ممکن کرده است؟</p>
+    <div class="quiz-options">
+      <button class="quiz-btn" onclick="selectAnswer(this)">A) سفر سریع‌تر به دور دنیا</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">B) اشتراک‌گذاری فوری اطلاعات در سراسر جهان</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">C) کاهش هزینه‌های تلفن</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">D) افزایش تعداد کتاب‌ها</button>
+    </div>
+  </div>
+
+  <div class="exercise-card reveal">
+    <div class="ex-header">
+      <div class="ex-icon">🗣️</div>
+      <h4>تمرین ضرب‌المثل‌ها (Idioms) — سطح پیشرفته</h4>
+    </div>
+    <p>معنی اصطلاح <strong style="color:var(--accent-light)">"Break a leg"</strong> چیست؟</p>
+    <div class="quiz-options">
+      <button class="quiz-btn" onclick="selectAnswer(this)">A) پایت بشکند</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">B) موفق باشی / شکست نخوری</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">C) محکم بایست</button>
+      <button class="quiz-btn" onclick="selectAnswer(this)">D) مراقب خودت باش</button>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <div class="section-label">نظرات زبان‌آموزان</div>
+    <h2 class="section-title">دانش‌آموزان ما درباره CanDo چه می‌گویند</h2>
+    <p class="section-sub">بیش از ۱۲۰۰ زبان‌آموز به CanDo اعتماد کرده‌اند</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">کلاس‌های CanDo واقعاً متفاوت بود. استادها صبور و با انرژی هستند و فضای کلاس طوری است که اصلاً خجالت نمی‌کشی صحبت کنی. من از سطح مبتدی شروع کردم و الان دارم برای آیلتس آماده می‌شوم.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">س</div>
+        <div class="testi-info">
+          <strong>سارا محمدی</strong>
+          <span>دانشجوی دوره پیشرفته</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">برای مصاحبه کاری‌ام نیاز به مکالمه سریع داشتم. دوره مکالمه محور CanDo در دو ماه به من کمک کرد اعتماد به نفس کافی پیدا کنم. واقعاً ممنونم.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">ر</div>
+        <div class="testi-info">
+          <strong>رضا کریمی</strong>
+          <span>دانشجوی دوره مکالمه</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">فرزندم در کلاس‌های کودکان CanDo شرکت می‌کند. بعد از سه ماه، پیشرفتش در تلفظ و لغات انگلیسی واقعاً شگفت‌انگیز بود. معلم‌ها با بچه‌ها خوب ارتباط برقرار می‌کنند.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">م</div>
+        <div class="testi-info">
+          <strong>مریم رضایی</strong>
+          <span>والدین زبان‌آموز</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-label">چرا CanDo</div>
+    <h2 class="section-title">مزایایی که CanDo را متفاوت می‌کند</h2>
+    <p class="section-sub">یادگیری زبان انگلیسی با بهترین روش‌ها و امکانات</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">👨‍🏫</div>
+      <h3>اساتید مجرب</h3>
+      <p>تیم آموزشی متشکل از اساتید با تجربه و مسلط به روش‌های تدریس نوین که یادگیری را آسان و لذت‌بخش می‌کنند.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">👥</div>
+      <h3>کلاس‌های کوچک</h3>
+      <p>ظرفیت محدود هر کلاس باعث می‌شود هر زبان‌آموز به اندازه کافی تمرین کرده و سوالات خود را مطرح کند.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📚</div>
+      <h3>متدهای روز دنیا</h3>
+      <p>استفاده از جدیدترین کتاب‌های آموزشی بین‌المللی (American English File, Interchange, IELTS Cambridge).</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎯</div>
+      <h3>مکالمه محور</h3>
+      <p>تمرکز اصلی روی مهارت Speaking است تا زبان‌آموزان بتوانند در موقعیت‌های واقعی با اطمینان صحبت کنند.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">⏰</div>
+      <h3>زمان‌بندی منعطف</h3>
+      <p>کلاس‌ها در شفت‌های صبح و عصر برگزار می‌شود تا برای دانشجویان و شاغلین قابل دسترسی باشد.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">💡</div>
+      <h3>مشاوره رایگان</h3>
+      <p>قبل از ثبت‌نام، سطح زبان شما به صورت رایگان تعیین شده و مناسب‌ترین دوره پیشنهاد می‌شود.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+  <div class="section-header reveal">
+    <div class="section-label">تعرفه‌ها</div>
+    <h2 class="section-title">سرمایه‌گذاری روی آینده خود</h2>
+    <p class="section-sub">قیمت‌های منصفانه با بهترین کیفیت آموزش</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <h3>دوره مبتدی</h3>
+      <p class="desc">گرامر پایه + لغات + مکالمه</p>
+      <div class="price">۲,۸۰۰,۰۰۰ <span>تومان / ترم</span></div>
+      <ul class="pricing-features">
+        <li>۲۴ جلسه آموزشی</li>
+        <li>کتاب American English File</li>
+        <li>فایل‌های صوتی و تصویری</li>
+        <li>آزمون پیشرفت ماهانه</li>
+        <li>پشتیبانی تلفنی</li>
+      </ul>
+      <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">ثبت‌نام</a>
+    </div>
+    <div class="pricing-card popular reveal">
+      <h3>دوره آیلتس</h3>
+      <p class="desc">آمادگی کامل آزمون آیلتس</p>
+      <div class="price">۵,۵۰۰,۰۰۰ <span>تومان / ترم</span></div>
+      <ul class="pricing-features">
+        <li>۳۶ جلسه فشرده</li>
+        <li>کتاب‌های Cambridge IELTS</li>
+        <li>Mock Test هفتگی</li>
+        <li>تدریس خصوصی Writing</li>
+        <li>مشاوره ثبت‌نام آزمون</li>
+        <li>گواهی پایان دوره</li>
+      </ul>
+      <a href="#contact" class="btn btn-glow" style="width:100%;justify-content:center;">ثبت‌نام</a>
+    </div>
+    <div class="pricing-card reveal">
+      <h3>مکالمه محور</h3>
+      <p class="desc">تمرکز بر Speaking و Listening</p>
+      <div class="price">۳,۲۰۰,۰۰۰ <span>تومان / ترم</span></div>
+      <ul class="pricing-features">
+        <li>۲۰ جلسه فشرده</li>
+        <li>موضوعات کاربردی روزمره</li>
+        <li>کلاس بحث و گفتگو</li>
+        <li>تمرین مصاحبه شغلی</li>
+        <li>پشتیبانی واتساپی</li>
+      </ul>
+      <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">ثبت‌نام</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header reveal">
+    <div class="section-label">سوالات متداول</div>
+    <h2 class="section-title">پاسخ به سوالات شما</h2>
+    <p class="section-sub">پیش از ثبت‌نام، سوالات خود را اینجا پیدا کنید</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>چگونه سطح زبان من تعیین می‌شود؟</span>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-answer">
+        قبل از ثبت‌نام، یک آزمون تعیین سطح رایگان شامل گرامر، لغات و مکالمه برگزار می‌شود. بر اساس نتیجه، مناسب‌ترین دوره به شما پیشنهاد می‌شود.
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>کلاس‌ها به صورت حضوری است یا آنلاین؟</span>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-answer">
+        هر دو! کلاس‌های حضوری در موسسه CanDo در دورود برگزار ی‌شود. همچنین امکان شرکت آنلاین از هر نقطه ایران نیز وجود دارد.
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>مدت زمان هر دوره چقدر است؟</span>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-answer">
+        دوره‌های معمولی ۲ تا ۳ ماه (۲۴ تا ۳۶ جلسه) و دوره‌های فشرده ۱ تا ۲ ماهه هستند. برنامه زمانی منعطف است.
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>آیا مدرک پایان دوره اعطا می‌شود؟</span>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-answer">
+        بله، پس ز اتمام موفقیت‌آمیز دوره و قبولی در آزمون پایان ترم، مدرک معتبر پایان دوره به زبان‌آموزان داده می‌شود.
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>آیا امکان پرداخت اقساطی وجود دارد؟</span>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-answer">
+        بله، برای دوره‌های بالای ۳ میلیون تومان، امکان پرداخت در دو قسط وجود دارد. قسط اول هنگام ثبت‌نام و قسط دوم در میانه دوره.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-section reveal">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>با ما در تماس باشید</h3>
+        <p>برای ثبت‌نام، تعیین سطح رایگان یا هر سوالی با ما تماس بگیرید</p>
+
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <strong>آدرس</strong>
+            <span>دورود، خیابان الغدیر، چهار راه خیام، نبش خیام غربی</span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <strong>تلفن ثابت</strong>
+            <a href="tel:06643232397">۰۶۶-۴۳۲۳-۲۳۹۷</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text">
+            <strong>همراه</strong>
+            <a href="tel:09120719072">۰۹۱۲-۰۷۱-۹۰۷۲</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text">
+            <strong>همراه</strong>
+            <a href="tel:09338819703">۰۹۳۳-۸۸۱-۹۷۰۳</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <strong>ایمیل</strong>
+            <a href="/cdn-cgi/l/email-protection#670e0901082704060903084a0b06090012060002490e15"><span class="__cf_email__" data-cfemail="cda4a3aba28daeaca3a9a2e0a1aca3aab8acaaa8e3a4bf">[email&#160;protected]</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:0.5rem;">فرم ثبت‌نام</h3>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem;">مشاوره رایگان + تعیین سطح</p>
+        <form onsubmit="event.preventDefault(); alert('پیام شما ارسال شد! به زودی با شما تماس می‌گیریم.');">
+          <div class="form-group">
+            <label>نام و نام خانوادگی</label>
+            <input type="text" placeholder="نام خود را وارد کنید" required>
+          </div>
+          <div class="form-group">
+            <label>شماره موبایل</label>
+            <input type="tel" placeholder="مثال: 0912XXXXXXX" required>
+          </div>
+          <div class="form-group">
+            <label>دوره مورد نظر</label>
+            <select required>
+              <option value="">انتخاب دوره...</option>
+              <option value="elementary">مبتدی</option>
+              <option value="pre-intermediate">پیش‌متوسطه</option>
+              <option value="intermediate">متوسطه</option>
+              <option value="advanced">پیشرفته</option>
+              <option value="ielts">آمادگی آیلتس</option>
+              <option value="conversation">مکالمه محور</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>پیام (اختیاری)</label>
+            <textarea placeholder="سوال یا توضیح خاصی دارید بنویسید..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-glow" style="width:100%;justify-content:center;">ارسال درخواست مشاوره</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">C</div>
+        <span class="logo-text">CanDo</span>
+      </a>
+      <p>موسسه زبان انگلیسی CanDo با بیش از ۸ سال تجربه در آموزش زبان انگلیسی به کودکان، نوجوانان و بزرگسالان در دورود.</p>
+    </div>
+    <div class="footer-col">
+      <h4>دسترسی سریع</h4>
+      <ul>
+        <li><a href="#courses">دوره‌ها</a></li>
+        <li><a href="#pricing">قیمت‌ها</a></li>
+        <li><a href="#faq">سوالات</a></li>
+        <li><a href="#contact">تماس</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>دوره‌ها</h4>
+      <ul>
+        <li><a href="#courses">مبتدی تا پیشرفته</a></li>
+        <li><a href="#courses">آمادگی آیلتس</a></li>
+        <li><a href="#courses">مکالمه محور</a></li>
+        <li><a href="#courses">کلاس کودکان</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>تماس</h4>
+      <ul>
+        <li><a href="tel:06643232397">۰۶۶-۴۳۲۳-۲۳۹۷</a></li>
+        <li><a href="tel:09120719072">۰۹۱۲-۰۷۱-۹۰۷۲</a></li>
+        <li><a href="tel:09338819703">۰۹۳۳-۸۸۱-۹۷۰۳</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>موسسه زبان انگلیسی CanDo — دورود، خیابان الغدیر، چهار راه خیام، نبش خیام غربی</p>
+    <p style="margin-top:0.5rem;opacity:0.7;">تمامی حقوق محفوظ است.</p>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1500);
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  const backToTop = document.getElementById('backToTop');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+    backToTop.classList.add('visible');
+  } else {
+    navbar.classList.remove('scrolled');
+    backToTop.classList.remove('visible');
+  }
+});
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Stagger children
+const grids = document.querySelectorAll('.courses-grid, .features-grid, .testimonials-grid, .pricing-grid');
+grids.forEach(grid => {
+  const children = grid.querySelectorAll('.reveal');
+  children.forEach((child, i) => {
+    child.style.transitionDelay = `${i * 0.1}s`;
+  });
+});
+
+// Quiz interaction
+function selectAnswer(btn) {
+  const parent = btn.closest('.quiz-options');
+  parent.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('correct'));
+  btn.classList.add('correct');
+}
+
+// FAQ toggle
+function toggleFaq(item) {
+  const faqItem = item.closest('.faq-item');
+  const wasActive = faqItem.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+  if (!wasActive) faqItem.classList.add('active');
+}
+</script>
+
+</body>
+</html>
