@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CanDo Language Institute | آموزشگاه زبان CanDo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1e5db4;
+  --primary-dark: #164785;
+  --primary-light: #e8f1fc;
+  --accent: #f28c28;
+  --accent-light: #fff0e0;
+  --text: #1a1a2e;
+  --text-light: #4a4a68;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --bg-alt: #f8fbff;
+  --border: #e2e8f0;
+  --success: #22c55e;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --shadow: 0 4px 20px rgba(30,93,180,0.08);
+  --shadow-lg: 0 20px 50px rgba(30,93,180,0.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Vazirmatn", Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  padding: 0.8rem 0;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.3rem; font-weight: 900;
+}
+
+.logo-text {
+  font-size: 1.5rem; font-weight: 900; color: var(--primary);
+}
+
+.logo-sub {
+  font-size: 0.75rem; color: var(--accent); font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.3rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--accent), #f59e0b) !important;
+  color: #fff !important;
+  padding: 0.6rem 1.4rem !important;
+  border-radius: 10px !important;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(242,140,40,0.3);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f1fc 0%, #fff 50%, #fff0e0 100%);
+  padding: 8rem 1.5rem 4rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -10%; right: -5%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(30,93,180,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -10%; left: -5%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(242,140,40,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+}
+
+.hero-label::before {
+  content: "";
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.hero h1 span {
+  color: var(--primary);
+  position: relative;
+}
+
+.hero h1 span::after {
+  content: "";
+  position: absolute;
+  bottom: 2px; left: 0; right: 0;
+  height: 8px;
+  background: rgba(242,140,40,0.2);
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.hero-sub {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(30,93,180,0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(30,93,180,0.35);
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* Hero image area */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+}
+
+.hero-image-main {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: morphBlob 10s ease-in-out infinite;
+}
+
+@keyframes morphBlob {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+}
+
+.hero-emoji {
+  font-size: 8rem;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+}
+
+.hero-float-card {
+  position: absolute;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  animation: floatCard 5s ease-in-out infinite;
+}
+
+.hero-float-card.c1 { top: 10%; left: -10%; animation-delay: 0s; }
+.hero-float-card.c2 { bottom: 20%; right: -5%; animation-delay: -2s; }
+.hero-float-card.c3 { bottom: 5%; left: 5%; animation-delay: -4s; }
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.float-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* ===== FEATURES BAR ===== */
+.features-bar {
+  background: #fff;
+  padding: 3rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.features-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-mini {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-radius: var(--radius);
+  transition: all 0.3s;
+}
+
+.feature-mini:hover {
+  background: var(--bg-alt);
+  transform: translateY(-5px);
+}
+
+.feature-mini-icon {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 1rem;
+  background: var(--primary-light);
+}
+
+.feature-mini h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+.feature-mini p {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.6rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  line-height: 1.25;
+}
+
+.section-sub {
+  color: var(--text-light);
+  font-size: 1rem;
+  max-width: 550px;
+}
+
+/* ===== COURSES ===== */
+.courses-section { background: var(--bg-alt); }
+
+.courses-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.courses-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.course-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(30,93,180,0.15);
+}
+
+.course-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.35s;
+}
+
+.course-card:hover::before {
+  transform: scaleX(1);
+}
+
+.course-icon-wrap {
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+.course-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+
+.course-card p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.course-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.course-tag {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 0.25rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ===== STEPS ===== */
+.steps-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; }
+
+.steps-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.steps-section .section-label { color: var(--accent-light); }
+.steps-section .section-title { color: #fff; }
+.steps-section .section-sub { color: rgba(255,255,255,0.8); margin: 0 auto 3rem; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+
+.step-item {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.step-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #f59e0b);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; font-weight: 900;
+  margin: 0 auto 1.2rem;
+  box-shadow: 0 8px 24px rgba(242,140,40,0.3);
+}
+
+.step-item h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.step-item p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.7;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testi-section { background: #fff; }
+
+.testi-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.testi-card {
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.testi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.testi-stars {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.testi-text {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+}
+
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testi-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 900; font-size: 1.2rem;
+}
+
+.testi-info strong {
+  display: block;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.testi-info span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ===== EXERCISES ===== */
+.ex-section { background: var(--bg-alt); }
+
+.ex-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ex-header-wrap {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.ex-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 1.2rem;
+}
+
+.ex-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.ex-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), #f59e0b);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.3rem; font-weight: 800;
+}
+
+.ex-card h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.ex-card p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.7rem;
+}
+
+.quiz-btn {
+  padding: 0.9rem 1.1rem;
+  border: 2px solid var(--border);
+  background: #fff;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.92rem;
+  text-align: right;
+  transition: all 0.25s;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.quiz-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateX(-3px);
+}
+
+.quiz-btn.correct {
+  border-color: var(--success);
+  background: #f0fdf4;
+  color: var(--success);
+}
+
+/* ===== CONTACT ===== */
+.contact-section { background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%); }
+
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+  color: var(--text);
+}
+
+.contact-info > p {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+.contact-item-icon {
+  width: 48px; height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.2rem;
+}
+
+.contact-item strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.contact-item span,
+.contact-item a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.contact-form-wrap {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-form-wrap h3 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-wrap > p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  margin-bottom: 1.2rem;
+}
+
+.form-row label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition: all 0.25s;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(30,93,180,0.1);
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--text);
+  color: #fff;
+  padding: 4rem 1.5rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand .logo-text { color: #fff; }
+.footer-brand p {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-top: 1rem;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  color: #fff;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.6rem; }
+.footer-col a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.footer-col a:hover { color: var(--accent); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 2rem;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+}
+
+/* ===== ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+  .hero-sub { margin: 0 auto 2rem; }
+  .hero-btns { justify-content: center; }
+  .hero-visual { order: -1; }
+  .features-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 600px) {
+  .features-bar-inner { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  section { padding: 3rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">C</div>
+      <div>
+        <div class="logo-text">CanDo</div>
+        <div class="logo-sub">LANGUAGE INSTITUTE</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home / صفحه اصلی</a></li>
+      <li><a href="#courses">Courses / دوره‌ها</a></li>
+      <li><a href="#steps">Process / مراحل</a></li>
+      <li><a href="#testimonials">Reviews / نظرات</a></li>
+      <li><a href="#exercises">Practice / تمرین</a></li>
+      <li><a href="#contact" class="nav-cta">Free Consultation / مشاوره رایگان</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">CanDo Language Institute — Dorud</div>
+      <h1>
+        Master English with
+        <span>CanDo</span>
+        <br>
+        یادگیری زبان انگلیسی با CanDo
+      </h1>
+      <p class="hero-sub">
+        Expert teachers, modern methods, and a friendly environment for all levels from Elementary to IELTS.
+        <br>
+        اساتید مجرب، روش‌های نوین و فضایی دوستانه برای تمام سطوح از مبتدی تا آیلتس.
+      </p>
+      <div class="hero-btns">
+        <a href="#courses" class="btn btn-primary">Explore Courses — مشاهده دوره‌ها</a>
+        <a href="#contact" class="btn btn-secondary">Contact Us — تماس با ما</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-wrap">
+        <div class="hero-image-main">
+          <div class="hero-emoji">🎓</div>
+        </div>
+        <div class="hero-float-card c1">
+          <div class="float-icon">⭐</div>
+          <div>98% Satisfaction<br><small style="color:var(--muted)">رضایت زبان‌آموزان</small></div>
+        </div>
+        <div class="hero-float-card c2">
+          <div class="float-icon">👨‍🏫</div>
+          <div>+15 Teachers<br><small style="color:var(--muted)">استاد مجرب</small></div>
+        </div>
+        <div class="hero-float-card c3">
+          <div class="float-icon">📚</div>
+          <div>+1200 Students<br><small style="color:var(--muted)">زبان‌آموز موفق</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Features Bar -->
+<div class="features-bar">
+  <div class="features-bar-inner">
+    <div class="feature-mini reveal">
+      <div class="feature-mini-icon">👨‍🏫</div>
+      <h4>Expert Teachers<br><small style="color:var(--muted);font-weight:400;">اساتید مجرب</small></h4>
+      <p>Experienced & certified instructors</p>
+    </div>
+    <div class="feature-mini reveal">
+      <div class="feature-mini-icon">💬</div>
+      <h4>Speaking Focus<br><small style="color:var(--muted);font-weight:400;">تمرکز بر مکالمه</small></h4>
+      <p>Conversation-based learning</p>
+    </div>
+    <div class="feature-mini reveal">
+      <div class="feature-mini-icon">📖</div>
+      <h4>Modern Books<br><small style="color:var(--muted);font-weight:400;">کتاب‌های روز</small></h4>
+      <p>American English File & IELTS</p>
+    </div>
+    <div class="feature-mini reveal">
+      <div class="feature-mini-icon">⏰</div>
+      <h4>Flexible Time<br><small style="color:var(--muted);font-weight:400;">زمان منعطف</small></h4>
+      <p>Morning & evening classes</p>
+    </div>
+    <div class="feature-mini reveal">
+      <div class="feature-mini-icon">🎯</div>
+      <h4>Free Level Test<br><small style="color:var(--muted);font-weight:400;">تعیین سطح رایگان</small></h4>
+      <p>Before registration</p>
+    </div>
+n  </div>
+</div>
+
+<!-- Courses -->
+<section class="courses-section" id="courses">
+  <div class="courses-section-inner">
+    <div class="courses-header reveal">
+      <div class="section-label">Our Courses / دوره‌های ما</div>
+      <h2 class="section-title">Choose Your Learning Path<br>مسیر یادگیری خود را انتخاب کنید</h2>
+      <p class="section-sub" style="margin:0 auto;">From beginner to advanced, we have the right course for every goal.</p>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card reveal">
+        <div class="course-icon-wrap">📘</div>
+        <h3>Elementary / مبتدی</h3>
+        <p>Basic grammar, daily vocabulary, simple conversations, and correct pronunciation. Perfect for beginners with no background.</p>
+        <div class="course-tags"><span class="course-tag">Grammar</span><span class="course-tag">Speaking</span></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon-wrap">📗</div>
+        <h3>Pre-Intermediate / پیش‌متوسطه</h3>
+        <p>Expand vocabulary, past tenses, conversations in familiar situations, and reading comprehension of simple texts.</p>
+        <div class="course-tags"><span class="course-tag">Vocabulary</span><span class="course-tag">Reading</span></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon-wrap">📙</div>
+        <h3>Intermediate / متوسطه</h3>
+        <p>Complex grammar, speaking on various topics, writing short texts, and initial IELTS preparation.</p>
+        <div class="course-tags"><span class="course-tag">IELTS Prep</span><span class="course-tag">Writing</span></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon-wrap">📕</div>
+        <h3>Advanced / پیشرفته</h3>
+        <p>Fluent academic conversation, specialized vocabulary, full IELTS & TOEFL preparation, academic writing.</p>
+        <div class="course-tags"><span class="course-tag">IELTS</span><span class="course-tag">TOEFL</span></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon-wrap">🎯</div>
+        <h3>IELTS Preparation / آمادگی آیلتس</h3>
+        <p>Intensive training in Listening, Reading, Writing, and Speaking with a target score of 6 to 8. Mock tests every week.</p>
+        <div class="course-tags"><span class="course-tag">Exam Focus</span><span class="course-tag">Intensive</span></div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon-wrap">💬</div>
+        <h3>Conversation / مکالمه محور</h3>
+        <p>Fast-track speaking courses for travel, business, and job interviews. No heavy grammar books needed.</p>
+        <div class="course-tags"><span class="course-tag">Practical</span><span class="course-tag">Fast</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section class="steps-section" id="steps">
+  <div class="steps-section-inner">
+    <div class="section-label">How It Works / نحوه ثبت‌نام</div>
+    <h2 class="section-title">Your Journey in 4 Simple Steps<br>۴ گام ساده تا یادگیری زبان</h2>
+    <p class="section-sub">We make your English learning journey simple, stress-free, and successful.</p>
+    <div class="steps-grid">
+      <div class="step-item reveal">
+        <div class="step-num">1</div>
+        <h4>Free Level Test<br>تعیین سطح رایگان</h4>
+        <p>Visit our institute or contact us online for a free placement test to find your level.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">2</div>
+        <h4>Choose Your Course<br>انتخاب دوره</h4>
+        <p>Based on your level and goals, we recommend the best course for you.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">3</div>
+        <h4>Start Learning<br>شروع یادگیری</h4>
+        <p>Join small classes with expert teachers and modern international books.</p>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-num">4</div>
+        <h4>Get Certified<br>دریافت مدرک</h4>
+        <p>Receive a certificate after successfully completing the course and final exam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testi-section" id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-label">Testimonials / نظرات زبان‌آموزان</div>
+    <h2 class="section-title">What Our Students Say<br>دانش‌آموزان ما درباره CanDo چه می‌گویند</h2>
+    <p class="section-sub" style="margin:0 auto;">Over 1,200 students have trusted CanDo for their English journey.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The teachers at CanDo are patient and energetic. The classroom atmosphere is so friendly that I never felt shy speaking. I started from zero and now I'm preparing for IELTS."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">س</div>
+        <div class="testi-info">
+          <strong>Sara Mohammadi / سارا محمدی</strong>
+          <span>Advanced Student / دانشجوی پیشرفته</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I needed quick conversation skills for a job interview. The conversation course at CanDo helped me gain confidence in just 2 months. Highly recommended!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">ر</div>
+        <div class="testi-info">
+          <strong>Reza Karimi / رضا کریمی</strong>
+          <span>Conversation Course / دوره مکالمه</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"My child attends the kids' classes at CanDo. After 3 months, the improvement in pronunciation and vocabulary was amazing. Teachers connect so well with children."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">م</div>
+        <div class="testi-info">
+          <strong>Maryam Rezaei / مریم رضایی</strong>
+          <span>Parent / والدین</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Exercises -->
+<section class="ex-section" id="exercises">
+  <div class="ex-section-inner">
+    <div class="ex-header-wrap reveal">
+      <div class="section-label">Practice / تمرین‌های آنلاین</div>
+      <h2 class="section-title">Test Your Skills<br>مهارت خود را محک بزنید</h2>
+      <p class="section-sub" style="margin:0 auto;">Sample interactive exercises to strengthen your English skills.</p>
+    </div>
+
+    <div class="ex-card reveal">
+      <div class="ex-card-header">
+        <div class="ex-card-icon">A</div>
+        <h4>Vocabulary / لغات — Elementary</h4>
+      </div>
+      <p>What is the meaning of <strong style="color:var(--primary)">"Apple"</strong>?</p>
+      <div class="quiz-grid">
+        <button class="quiz-btn" onclick="this.classList.add('correct')">A) سیب</button>
+        <button class="quiz-btn">B) پرتقال</button>
+        <button class="quiz-btn">C) موز</button>
+        <button class="quiz-btn">D) انگور</button>
+      </div>
+    </div>
+
+    <div class="ex-card reveal">
+      <div class="ex-card-header">
+        <div class="ex-card-icon">G</div>
+        <h4>Grammar / گرامر — Pre-Intermediate</h4>
+      </div>
+      <p>Fill in the blank: <strong style="color:var(--primary)">She ______ to school every day.</strong></p>
+      <div class="quiz-grid">
+        <button class="quiz-btn">A) go</button>
+        <button class="quiz-btn" onclick="this.classList.add('correct')">B) goes</button>
+        <button class="quiz-btn">C) going</button>
+        <button class="quiz-btn">D) gone</button>
+      </div>
+    </div>
+
+    <div class="ex-card reveal">
+      <div class="ex-card-header">
+        <div class="ex-card-icon">R</div>
+        <h4>Reading / درک مطلب — Intermediate</h4>
+      </div>
+      <p style="background:var(--primary-light);padding:1rem;border-radius:12px;margin-bottom:1rem;">"The Internet has changed the way people communicate. It allows us to share information instantly across the world."</p>
+      <p>According to the text, what has the Internet made possible?</p>
+      <div class="quiz-grid">
+        <button class="quiz-btn">A) Faster travel</button>
+        <button class="quiz-btn" onclick="this.classList.add('correct')">B) Instant information sharing worldwide</button>
+        <button class="quiz-btn">C) Lower phone costs</button>
+        <button class="quiz-btn">D) More books</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <h2>Contact Us / تماس با ما</h2>
+      <p>Ready to start your English journey? Contact us for free level assessment and course consultation.</p>
+      <p>آماده شروع مسیر یادگیری زبان انگلیسی هستید؟ با ما تماس بگیرید برای تعیین سطح رایگان و مشاوره دوره.</p>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div>
+          <strong>Address / آدرس</strong>
+          <span>Dorud, Alghadir St, Khayyam Square, Khayyam Gharbi Corner<br>دورود، خیابان الغدیر، چهار راه خیام، نبش خیام غربی</span>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div>
+          <strong>Phone / تلفن</strong>
+          <a href="tel:06643232397">066-4323-2397</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">📱</div>
+        <div>
+          <strong>Mobile / همراه</strong>
+          <a href="tel:09120719072">0912-071-9072</a> &nbsp;|&nbsp; <a href="tel:09338819703">0933-881-9703</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div>
+          <strong>Email / ایمیل</strong>
+          <a href="/cdn-cgi/l/email-protection#1a73747c755a797b747e7537767b747d6f7b7d7f347368"><span class="__cf_email__" data-cfemail="bed7d0d8d1fedddfd0dad193d2dfd0d9cbdfd9db90d7cc">[email&#160;protected]</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap reveal">
+      <h3>Free Registration / ثبت‌نام رایگان</h3>
+      <p>Fill out the form and we will contact you soon.</p>
+      <form onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon. / با تشکر! به زودی با شما تماس می‌گیریم.');">
+        <div class="form-row">
+          <label>Full Name / نام و نام خانوادگی</label>
+          <input type="text" placeholder="Your name / نام شما" required>
+        </div>
+        <div class="form-row">
+          <label>Mobile / شماره موبایل</label>
+          <input type="tel" placeholder="09XX-XXX-XXXX" required>
+        </div>
+        <div class="form-row">
+          <label>Course / دوره مورد نظر</label>
+          <select required>
+            <option value="">Select a course / انتخاب دوره...</option>
+            <option value="elementary">Elementary / مبتدی</option>
+            <option value="pre-intermediate">Pre-Intermediate / پیش‌متوسطه</option>
+            <option value="intermediate">Intermediate / متوسطه</option>
+            <option value="advanced">Advanced / پیشرفته</option>
+            <option value="ielts">IELTS Preparation / آمادگی آیلتس</option>
+            <option value="conversation">Conversation / مکالمه محور</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Message / پیام (Optional)</label>
+          <textarea placeholder="Any questions? / سوالی دارید؟"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Request / ارسال درخواست</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">C</div>
+        <div>
+          <div class="logo-text">CanDo</div>
+          <div class="logo-sub">LANGUAGE INSTITUTE</div>
+        </div>
+      </a>
+      <p>CanDo Language Institute has over 8 years of experience teaching English to children, teenagers, and adults in Dorud. We are committed to helping you achieve your language goals.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#courses">Courses / دوره‌ها</a></li>
+        <li><a href="#steps">Process / مراحل</a></li>
+        <li><a href="#testimonials">Reviews / نظرات</a></li>
+        <li><a href="#contact">Contact / تماس</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="#courses">Elementary to Advanced</a></li>
+        <li><a href="#courses">IELTS Preparation</a></li>
+        <li><a href="#courses">Conversation</a></li>
+        <li><a href="#courses">Kids Classes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <ul>
+        <li><a href="tel:06643232397">Phone: 066-4323-2397</a></li>
+        <li><a href="tel:09120719072">Mobile: 0912-071-9072</a></li>
+        <li><a href="tel:09338819703">Mobile: 0933-881-9703</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#e980878f86a98a88878d86c48588878e9c888e8cc7809b"><span class="__cf_email__" data-cfemail="5a33343c351a393b343e3577363b343d2f3b3d3f743328">[email&#160;protected]</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>CanDo Language Institute — Dorud, Alghadir St, Khayyam Square, Khayyam Gharbi Corner</p>
+    <p style="margin-top:0.5rem;">تمامی حقوق محفوظ است. / All rights reserved.</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Stagger children in grids
+const grids = document.querySelectorAll('.courses-grid, .testi-grid, .features-bar-inner, .steps-grid');
+grids.forEach(grid => {
+  const children = grid.querySelectorAll('.reveal');
+  children.forEach((child, i) => {
+    child.style.transitionDelay = `${i * 0.1}s`;
+  });
+});
+</script>
+
+</body>
+</html>
